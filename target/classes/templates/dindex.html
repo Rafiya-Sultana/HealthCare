@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head profile="http://gmpg.org/xfn/11">
+<title>Micro-Services For Health Care System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="../styles/layout.css" type="text/css" />
+</head>
+<body id="top">
+<div class="wrapper row1">
+  <div id="header" class="clear">
+    <div class="fl_left">
+      <h1><a th:href="@{/index}">Cloud Assisted Micro-Services For Health Care System</a></h1>
+      <p>Health Care</p>
+    </div>
+    <div class="fl_right">
+      <ul> </ul>
+    </div>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row2">
+  <div class="rnd">
+    <!-- ###### -->
+    <div id="topnav">
+      <ul>
+      	  <li><a th:href="@{/home}">Home</a></li>
+          <li><a th:href="@{/index}">Patient</a></li> 
+          <li class="active"><a th:href="@{/dindex}">Doctor</a></li>
+          <li><a th:href="@{/hindex}">Hospital</a></li>
+      </ul>
+    </div>
+    <!-- ###### -->
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row3">
+  <div class="rnd">
+    <div id="container" class="clear">
+      <!-- ####################################################################################################### -->
+      <h1>Doctor Login Page</h1>
+       
+      <form action="#" th:action="@{/doctor/login}" th:object="${doctorDto}" method="post">
+          
+          <table align="center" border="0px" width="100px">
+              
+              <tr style="color: red;">
+                  <td>User Name:</td><td><input type="text" th:field="*{doctorUserName}" name="username" size="35px"/></td>
+              </tr>
+              
+              <tr style="color: red;">
+                  <td>Password:</td><td><input type="password" th:field="*{doctorPassword}" name="password" size="35px"/></td>
+              </tr>
+              
+              <tr>
+                  <td>&nbsp;</td>
+                  <td><input type="submit" value="Submit"/><input type="reset" value="Reset"/></td>
+              </tr>
+              
+              <tr>
+                   <td>&nbsp;</td>
+                   <td><a th:href="@{/dsignin}">New Doctor</a></td>
+              </tr>
+              
+          </table>
+          
+           <div th:if="${#fields.hasErrors('global')}">
+			    <p th:each="err : ${#fields.errors('global')}" th:text="${err}" style="color:red;" />
+		   </div>
+          
+      </form>
+                  
+    </div>
+    
+  </div>
+    
+ </div>
+    
+</body>
+    
+</html>

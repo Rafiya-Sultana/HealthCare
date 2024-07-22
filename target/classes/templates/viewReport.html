@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head profile="http://gmpg.org/xfn/11">
+<title>Micro-Services For Health Care System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+<link rel="stylesheet" href="../styles/jquery-ui.css" type="text/css" />
+<script src="../scripts/jquery-1.5.js"></script>
+<script src="../scripts/jquery-ui-1.8.17.custom.min.js"></script>
+<script type="text/javascript">
+    
+   $(function() 
+   {
+         $("#appointmentDate").datepicker({ dateFormat: "yy-mm-dd" }).val()
+   });
+
+</script></head>
+<body id="top">
+<div class="wrapper row1">
+  <div id="header" class="clear">
+    <div class="fl_left">
+      <h1><a th:href="@{/index}">Cloud Assisted Micro-Services For Health Care System</a></h1>
+      <p>Health Care
+      	<span style="padding-left: 650px; color: red;" th:text="${session.x}"></span> 
+      </p>
+    </div>
+    <div class="fl_right">
+      <ul> </ul>
+    </div>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row2">
+  <div class="rnd">
+    <!-- ###### -->
+    <div id="topnav">
+      <ul>          
+       	  <li><a th:href="@{/patient/profile}">View Profile</a></li> 
+          <li><a th:href="@{/patient/searchDoctor}">Search Doctor</a></li>  
+          <li class="active"><a th:href="@{/patient/searchAppointment}">View Appointment</a></li>  
+          <li><a th:href="@{/signout}">Sign Out</a></li>
+      </ul>
+    </div>
+    <!-- ###### -->
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row3">
+  <div class="rnd">
+    <div id="container" class="clear">
+      <!-- ####################################################################################################### -->
+           
+      <h1>View Lab Report/Prescription</h1>
+       
+      <div th:switch="${reports}">
+      
+	    <h2 th:case="null">No Records Found!</h2>
+	    
+	        <div th:case="*" style="height:300px; overflow:auto;">
+	        
+	            <table align="center" border="0px" width="100px">
+	            
+	                <thead>
+	                
+	                    <tr>
+	                        <th>Sno</th>
+	                        <th>Appointment Id</th>
+	                        <th>File Name</th>
+	                        <th>File Extension</th>
+	                        <th>Remarks</th>
+	                        <th>Status</th>  
+	                        <th>Download</th>                     
+	                        <th>Uploaded Date</th>
+	                    </tr>
+	                    
+	                </thead>
+	                
+	                <tbody>
+	                
+	                <tr th:each="m, mstatus : ${reports}">
+	                
+	                	<td th:text="${mstatus.count}"></td>
+	                    <td th:text="${m.appointmentId}"></td>
+	                    <td th:text="${m.fileName}"></td>
+	                    <td th:text="${m.fileExtension}"></td>
+	                    <td th:text="${m.remarks}"></td>
+	                    <td th:text="${m.status}"></td>
+	                    <td><a th:href="@{/patient/download/{filename}(filename=${m.fileFullName})}"><img src='/images/Download.png'></img></a></td>	 
+	                    <td th:text="${m.recordedDate}"></td>	           
+	                   
+	                </tr>
+	                
+	                <tr th:if="${#lists.isEmpty(reports)}">
+	                
+	                	<td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td style="color:red;">No Record Found!</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    <td>&nbsp;</td>
+	                    
+	                </tr>
+	                
+	            </tbody>
+	            
+	        </table>
+	        
+	    </div> 
+                  
+    </div>
+    
+   </div>
+    
+  </div>
+    
+ </div>
+    
+</body>
+    
+</html>

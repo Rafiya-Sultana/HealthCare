@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: saran
+Build-Jdk: 17.0.10
+Implementation-Title: HealthCare
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.app.healthcare
+Implementation-Vendor: Pivotal Software, Inc.
+Implementation-URL: http://projects.spring.io/spring-boot/HealthCare/
+Created-By: Maven Integration for Eclipse
+

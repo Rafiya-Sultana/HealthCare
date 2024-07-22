@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head profile="http://gmpg.org/xfn/11">
+<title>Micro-Services For Health Care System</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="../../styles/layout.css" type="text/css" />
+<link rel="stylesheet" href="../../styles/jquery-ui.css" type="text/css" />
+<script src="../../scripts/jquery-1.5.js"></script>
+<script src="../../scripts/jquery-ui-1.8.17.custom.min.js"></script>
+<script type="text/javascript">
+    
+   $(function() 
+   {
+         $("#searchDate").datepicker({ dateFormat: "yy-mm-dd" }).val()
+   });
+
+</script>
+</head>
+<body id="top">
+<div class="wrapper row1">
+  <div id="header" class="clear">
+    <div class="fl_left">
+      <h1><a th:href="@{/index}">Cloud Assisted Micro-Services For Health Care System</a></h1>
+      <p>Health Care
+      	<span style="padding-left: 650px; color: red;" th:text="${session.x}"></span> 
+      </p>
+    </div>
+    <div class="fl_right">
+      <ul> </ul>
+    </div>
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row2">
+  <div class="rnd">
+    <!-- ###### -->
+    <div id="topnav">
+      <ul>        
+       	  <li><a th:href="@{/patient/profile}">View Profile</a></li> 
+          <li><a th:href="@{/patient/searchDoctor}">Search Doctor</a></li>  
+          <li class="active"><a th:href="@{/patient/searchAppointment}">View Appointment</a></li>  
+          <li><a th:href="@{/signout}">Sign Out</a></li>
+      </ul>
+    </div>
+    <!-- ###### -->
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper row3">
+  <div class="rnd">
+    <div id="container" class="clear">
+      <!-- ####################################################################################################### -->
+      <h1>Add Doctor Prescription/Lab Report's</h1>
+       
+      <form action="#" th:action="@{/patient/fileUpload}" method="post" th:object="${labReportDto}" enctype="multipart/form-data">
+          
+          <table align="center" border="0px" width="100px">
+             
+              <tr style="color: red;">
+                                
+                  <td>Appointment Id:</td>
+                  
+                  <td>
+                      <select th:field="*{appointmentId}" name="appointmentId" style="width: 356px;">                          
+                         <option th:each="d : ${appointments}" th:value="${d.appointmentId}" th:text="${d.appointmentId}"></option>
+                      </select>                      
+                  </td>
+                  
+              </tr>
+                           
+              <tr style="color: red;">
+                  <td>File:</td><td><input type="file" name="file" size="35px"/></td>
+              </tr>
+              
+              <tr style="color: red;">
+                  <td>Remarks:</td><td><textarea cols="52" rows="7" th:field="*{remarks}" name="remarks"></textarea></td>
+              </tr> 
+                              
+              <tr>
+                  <td>&nbsp;</td>
+                  <td><input type="submit" value="Submit"/><input type="reset" value="Reset"/></td>
+              </tr>
+              
+          </table>
+          
+          <div th:if="${message != null}">
+			    <p th:text="${message}" style="color:red;"/>
+		   </div>
+		   
+           <div th:if="${#fields.hasErrors('global')}">
+			    <p th:each="err : ${#fields.errors('global')}" th:text="${err}" style="color:red;" />
+		   </div>
+          
+      </form>
+                  
+    </div>
+    
+  </div>
+    
+ </div>
+    
+</body>
+    
+</html>
